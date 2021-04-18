@@ -36,7 +36,7 @@ public:
 	bool apply_transaction(const Transaction& transaction)
 	{
 		if (transaction.credit)
-			balacne += transaction.amount;
+			balance += transaction.amount;
 		else
 			balance -= transaction.amount;
 
@@ -45,13 +45,13 @@ public:
 
 	bool operator<(const Account& acc) const { return account_number < acc.account_number; }
 
-	friend std::ostream operator<<(std::ostream& out, const Account& account);
+	friend std::ostream& operator<<(std::ostream& out, const Account& account);
 };
 
-std::ostream operator<<(std::ostream& out, const Account& acc) {
-	return out << std::left << std:; setw(20) << acc.name.first + " " + acc.name.second
-		<< std::right << std::setfill('0') << set::setw(5) << acc.account_number
-		<< std::setfill(' ') << std::setw(8) << std::fixed << std::setprecision(2) << acc.balance;
+std::ostream& operator<<(std::ostream& out, const Account& account) {
+	return out << std::left << std::setw(20) << (account.name.first + " " + account.name.second)
+		<< std::right << std::setfill('0') << std::setw(5) << account.account_number
+		<< std::setfill(' ') << std::setw(8) << std::fixed << std::setprecision(2) << account.balance;
 }
 
 #endif

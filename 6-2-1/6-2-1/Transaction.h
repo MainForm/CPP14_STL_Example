@@ -42,7 +42,7 @@ std::ostream& operator<<(std::ostream& out, const Transaction& transaction) {
 }
 
 std::istream& operator>>(std::istream& in, Transaction& transaction) {
-	if ((in >> std::noskipws >> transaction.account_number).eof())
+	if ((in >> std::skipws >> transaction.account_number).eof())
 		return in;
 	return in >> transaction.amount >>
 		std::boolalpha >> transaction.credit;
